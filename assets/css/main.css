@@ -3161,3 +3161,35 @@ ol {
   color: #fff;
   background-color: #fd723b;
 }
+.contact-form-block {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+.contact-form-wrapper .form-group input,
+.contact-form-wrapper .form-group textarea {
+  width: 100%;
+  padding: 14px 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  resize: none;
+}
+
+.contact-form-wrapper .form-group {
+  margin-bottom: 20px;
+}
+
+.contact-form-wrapper .button {
+  text-align: right;
+}
+
+.contact-form-wrapper .btn {
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+}
