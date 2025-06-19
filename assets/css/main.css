@@ -3207,4 +3207,21 @@ ol {
         width: auto;
     }
 }
+@media (max-width: 767px) {
+    .navbar-brand {
+        /* If flexbox is causing stretching, try these: */
+        flex-grow: 0;
+        flex-shrink: 0;
+        /* Or simply set a specific width for the brand on mobile, and let the img scale within it */
+        width: 120px; /* Example fixed width for mobile logo container */
+    }
+}
+.navbar-brand {
+    /* Avoid fixed widths that might cause issues on mobile */
+    /* width: 250px; <-- remove or change this */
+    /* min-width: 200px; <-- remove or change this */
 
+    /* If you need to limit its size on large screens, use max-width */
+    max-width: 180px; /* Adjust this value to your desired max logo width */
+    height: auto; /* Ensure its height also adjusts if it has a background or specific layout */
+}
