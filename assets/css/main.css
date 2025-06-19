@@ -3281,5 +3281,6 @@ ol {
     padding-bottom: 50px; /* Keep or adjust as desired */
     position: relative;
     z-index: 5;
+    margin-top: 80px;	
     /* other existing styles */
 }
