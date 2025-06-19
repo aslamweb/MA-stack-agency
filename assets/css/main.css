@@ -3194,3 +3194,76 @@ ol {
   border-radius: 8px;
 }
 
+/* ---
+03. Header CSS
+--- */
+
+/* Default styles for the logo image */
+.navbar-brand img {
+    /* Ensures the image itself doesn't exceed its natural size unless explicitly told to. */
+    /* This is crucial for avoiding stretching and maintaining aspect ratio. */
+    width: auto;
+    height: auto;
+    /* Sets a maximum width for the logo on larger screens. Adjust as needed. */
+    max-width: 180px; /* Example: Max logo width for desktop, allowing it to scale down */
+    display: block; /* Ensures the image behaves as a block element for better layout control */
+}
+
+/* Styles for the logo's container (the link or div wrapping the img) */
+.navbar-brand {
+    /* Set a max-width for the brand container itself if you need to limit its space,
+       but avoid fixed 'width' that might restrict the image inside. */
+    max-width: 100%; /* Ensures the brand container doesn't overflow its parent */
+    /* Remove any fixed 'width' or 'min-width' that could be forcing the logo smaller. */
+    /* For example, remove: width: 250px; or min-width: 200px; */
+    height: auto; /* Ensures its height adjusts if it has background or specific layout */
+}
+
+
+/* Media queries for different screen sizes */
+
+/* Tablet and larger phones (e.g., 768px to 991px) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .navbar-brand img {
+        max-width: 140px; /* Adjust this for your desired logo size on tablets */
+        height: auto; /* Always keep this for aspect ratio */
+    }
+
+    /* If .navbar-brand itself is causing issues on tablets, you can adjust its max-width here */
+    .navbar-brand {
+        max-width: 100%; /* Or a specific value like 150px if needed */
+        width: auto; /* Allow the container to size based on content or other flex properties */
+    }
+}
+
+/* Mobile devices (up to 767px) */
+@media (max-width: 767px) {
+    .navbar-brand img {
+        max-width: 120px; /* Adjust this for your desired logo size on mobile */
+        max-height: 50px; /* Optional: if you need to strictly limit its height, but `height: auto` is usually enough */
+        width: auto;     /* Always keep this to prevent horizontal stretching */
+        height: auto;    /* Always keep this to maintain aspect ratio */
+    }
+
+    .navbar-brand {
+        /* If flexbox is causing issues, set flex-grow/shrink to 0 for the brand container */
+        flex-grow: 0;
+        flex-shrink: 0;
+        /* Allow the container to size dynamically, or set a subtle max-width if necessary */
+        max-width: 100%; /* Ensures it fits within its column */
+        width: auto; /* Let the content determine width, or Bootstrap's columns */
+    }
+
+    /* Your existing CSS has a line: .header .navbar-brand img { width: 100px; } for mobile.
+       Make sure to replace that with the `max-width` and `height: auto` provided above. */
+    .header .navbar-brand img {
+        max-width: 120px; /* This specifically targets the logo in the header on mobile */
+        height: auto;
+    }
+}
+
+/* Any other existing .header .navbar-brand img rules should be removed or adapted */
+/* For example, if you have:
+.header .navbar-brand img { width: 110px; }
+REMOVE THIS or ensure it has height: auto; and is less specific than max-width.
+*/
