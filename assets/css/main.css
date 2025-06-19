@@ -3196,7 +3196,8 @@ ol {
 
 .navbar-brand img {
     max-width: 100%; /* Ensures the image doesn't exceed its container's width */
-    height: auto;    /* Maintains aspect ratio */
+    height: auto;    /* Crucial: Maintains aspect ratio, preventing stretching */
+    display: block;  /* Optional, but often good practice for images within flexible layouts */
 }
 
 /* You might want to set a specific max-height for mobile if it's still too tall */
@@ -3206,3 +3207,4 @@ ol {
         width: auto;
     }
 }
+
