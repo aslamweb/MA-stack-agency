@@ -3194,76 +3194,74 @@ ol {
   border-radius: 8px;
 }
 
+
 /* ---
-03. Header CSS
---- */
+   Revised CSS for Header Logo - Focus on NO Vertical Shrinking/Squishing
+   --- */
 
-/* Default styles for the logo image */
-.navbar-brand img {
-    /* Ensures the image itself doesn't exceed its natural size unless explicitly told to. */
-    /* This is crucial for avoiding stretching and maintaining aspect ratio. */
-    width: auto;
+/* 03. Header CSS (relevant section) */
+
+/* Default styles for the logo image within the header's navbar-brand */
+.header .navbar-brand img {
+    /* 1. Crucial for aspect ratio: Let height adjust automatically based on width. */
     height: auto;
-    /* Sets a maximum width for the logo on larger screens. Adjust as needed. */
-    max-width: 180px; /* Example: Max logo width for desktop, allowing it to scale down */
-    display: block; /* Ensures the image behaves as a block element for better layout control */
+
+    /* 2. Allow image to shrink to fit container, but not stretch beyond its natural size */
+    /* (unless a larger max-width is specified below). This ensures it's responsive. */
+    max-width: 100%;
+
+    /* 3. Optional but good for layout: Make it a block element */
+    display: block;
+
+    /* 4. Set a maximum intrinsic width for the logo on larger screens.
+          This prevents it from becoming too large on desktops, while still allowing it to shrink.
+          Adjust this value (e.g., 180px, 200px) based on your design preference for desktop. */
+    max-width: 180px; /* Example: Max width for desktop display */
+
+    /* 5. Ensure no object-fit is distorting the image. If you have it, set to 'contain' or remove. */
+    object-fit: contain; /* Prevents image from being cropped or distorted if its container changes proportions */
 }
 
-/* Styles for the logo's container (the link or div wrapping the img) */
-.navbar-brand {
-    /* Set a max-width for the brand container itself if you need to limit its space,
-       but avoid fixed 'width' that might restrict the image inside. */
-    max-width: 100%; /* Ensures the brand container doesn't overflow its parent */
-    /* Remove any fixed 'width' or 'min-width' that could be forcing the logo smaller. */
-    /* For example, remove: width: 250px; or min-width: 200px; */
-    height: auto; /* Ensures its height adjusts if it has background or specific layout */
-}
-
-
-/* Media queries for different screen sizes */
+/* Specific adjustments for different screen sizes */
 
 /* Tablet and larger phones (e.g., 768px to 991px) */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .navbar-brand img {
-        max-width: 140px; /* Adjust this for your desired logo size on tablets */
-        height: auto; /* Always keep this for aspect ratio */
-    }
-
-    /* If .navbar-brand itself is causing issues on tablets, you can adjust its max-width here */
-    .navbar-brand {
-        max-width: 100%; /* Or a specific value like 150px if needed */
-        width: auto; /* Allow the container to size based on content or other flex properties */
+    .header .navbar-brand img {
+        /* Set the max-width for tablets. The height will adjust automatically. */
+        max-width: 140px; /* Adjust this value for your tablet view */
+        height: auto; /* Reiterate for clarity, though it's inherited */
     }
 }
 
 /* Mobile devices (up to 767px) */
 @media (max-width: 767px) {
-    .navbar-brand img {
-        max-width: 120px; /* Adjust this for your desired logo size on mobile */
-        max-height: 50px; /* Optional: if you need to strictly limit its height, but `height: auto` is usually enough */
-        width: auto;     /* Always keep this to prevent horizontal stretching */
-        height: auto;    /* Always keep this to maintain aspect ratio */
-    }
-
-    .navbar-brand {
-        /* If flexbox is causing issues, set flex-grow/shrink to 0 for the brand container */
-        flex-grow: 0;
-        flex-shrink: 0;
-        /* Allow the container to size dynamically, or set a subtle max-width if necessary */
-        max-width: 100%; /* Ensures it fits within its column */
-        width: auto; /* Let the content determine width, or Bootstrap's columns */
-    }
-
-    /* Your existing CSS has a line: .header .navbar-brand img { width: 100px; } for mobile.
-       Make sure to replace that with the `max-width` and `height: auto` provided above. */
     .header .navbar-brand img {
-        max-width: 120px; /* This specifically targets the logo in the header on mobile */
-        height: auto;
+        /* Set the max-width for mobile. This will control its size on small screens.
+           This is what prevents it from becoming "very bad" shrunk, as it defines its minimum desired width. */
+        max-width: 110px; /* Adjust this value for your desired mobile logo size */
+        height: auto; /* Ensure height still adjusts proportionally */
+        /* If the logo container (e.g., .navbar-brand) is too small, you might need to adjust its styling. */
     }
+
+    /* Important check for the .navbar-brand container itself on mobile */
+    /* This ensures the parent container allows enough space for the logo. */
+    .navbar-brand {
+        flex-grow: 0; /* Prevents the container from excessively expanding in flex contexts */
+        flex-shrink: 0; /* Prevents the container from excessively shrinking in flex contexts */
+        width: auto; /* Let the container's width be determined by its content or column */
+        max-width: 100%; /* Ensure it fits within its column/parent */
+    }
+
+    /* Remove any conflicting fixed 'width' or 'height' values specifically for mobile if they exist */
+    /* Example to remove: */
+    /* .header .navbar-brand img { width: 100px; } */
+    /* .header .navbar-brand img { height: 40px; } */
 }
 
-/* Any other existing .header .navbar-brand img rules should be removed or adapted */
-/* For example, if you have:
-.header .navbar-brand img { width: 110px; }
-REMOVE THIS or ensure it has height: auto; and is less specific than max-width.
-*/
+/* ---
+   Review your other CSS for conflicting rules.
+   Specifically search for:
+   - `width:` or `height:` on `.navbar-brand img` (especially fixed pixel values)
+   - `!important` flags anywhere near logo styles
+   - `object-fit: fill;` or `object-fit: cover;` on `img` elements.
+   --- */
