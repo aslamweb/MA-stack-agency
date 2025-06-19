@@ -3274,3 +3274,12 @@ ol {
    - `!important` flags anywhere near logo styles
    - `object-fit: fill;` or `object-fit: cover;` on `img` elements.
    --- */
+/* In your assets/css/main.css file */
+
+.hero-area {
+    padding-top: 150px; /* Adjust this value as needed to create more space */
+    padding-bottom: 50px; /* Keep or adjust as desired */
+    position: relative;
+    z-index: 5;
+    /* other existing styles */
+}
