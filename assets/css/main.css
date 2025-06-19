@@ -3193,3 +3193,16 @@ ol {
   font-size: 16px;
   border-radius: 8px;
 }
+
+.navbar-brand img {
+    max-width: 100%; /* Ensures the image doesn't exceed its container's width */
+    height: auto;    /* Maintains aspect ratio */
+}
+
+/* You might want to set a specific max-height for mobile if it's still too tall */
+@media (max-width: 767px) { /* Adjust breakpoint as needed for mobile devices */
+    .navbar-brand img {
+        max-height: 40px; /* Example: set a max height for mobile */
+        width: auto;
+    }
+}
